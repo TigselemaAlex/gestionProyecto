@@ -1,0 +1,101 @@
+<p-card
+  [header]="registerForm ? 'Registro' : 'Login'"
+  [style]="{ width: '25rem', 'margin-bottom': '2em', color: 'var(--color-20)' }"
+  styleClass="p-card-shadow"
+>
+  <div *ngIf="!registerForm">
+    <div class="flex justify-content-center">
+      <p-button
+        styleClass="p-button-outlined p-button-rounded"
+        [style]="{ width: '20rem', padding: '80px auto' }"
+      >
+        <div class="flex justify-content-center align-items-center w-full">
+          <i class="pi pi-google"></i>
+          <span class="ml-2 font-bold">Iniciar sesión con Google</span>
+        </div>
+      </p-button>
+    </div>
+
+    <p-divider align="center" type="solid">
+      <span> O inicia sesión con tu email</span>
+    </p-divider>
+  </div>
+
+  <form autocomplete="off">
+    <div class="field col-12">
+      <div class="p-float-label">
+        <input type="email" id="email" pInputText />
+        <label for="usuario">Email</label>
+      </div>
+    </div>
+
+    <div *ngIf="registerForm" class="field col-12">
+      <div class="p-float-label">
+        <input type="text" id="username" pInputText />
+        <label for="username">Ingrese el usuario</label>
+      </div>
+    </div>
+    <div class="field col-12">
+      <div class="p-float-label">
+        <input
+          type="{{ passwordHide ? 'password' : 'text' }}"
+          id="password"
+          pPassword
+        />
+        <button
+          pButton
+          pRipple
+          type="button"
+          icon="pi {{ passwordHide ? 'pi-lock' : 'pi-unlock' }} "
+          class="p-button-rounded p-button-secondary p-button-text input-password-form"
+          (click)="showPassword()"
+        ></button>
+        <label for="password">Contraseña</label>
+      </div>
+    </div>
+
+    <div *ngIf="registerForm" class="field col-12">
+      <div class="p-float-label">
+        <input type="password" id="password-re" pInputText />
+        <label for="password-re">Repita la contraseña</label>
+      </div>
+    </div>
+    <div
+      class="flex justify-content-center"
+      [ngClass]="
+        !registerForm ? 'justify-content-center' : 'justify-content-between'
+      "
+    >
+      <button
+        pButton
+        pRipple
+        type="button"
+        [label]="registerForm ? 'Registrar' : 'Ingresar'"
+        class="w-200 p-button-rounded p-button-success"
+      ></button>
+      <button
+        *ngIf="registerForm"
+        pButton
+        pRipple
+        type="button"
+        label="Atras"
+        class="w-9rem p-button-rounded p-button-secondary"
+        (click)="toogleRegister()"
+      ></button>
+    </div>
+  </form>
+
+  <ng-template pTemplate="footer">
+    <div
+      *ngIf="!registerForm"
+      class="flex align-items-center justify-content-center"
+    >
+      <span class="text-color">¿No estas registrado? </span>
+      <p-button
+        label="Crear una cuenta!!"
+        styleClass="p-button-link"
+        (onClick)="toogleRegister()"
+      ></p-button>
+    </div>
+  </ng-template>
+</p-card>

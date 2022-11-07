@@ -1,0 +1,59 @@
+<p-dialog
+  [header]="header"
+  [(visible)]="displayModal"
+  [modal]="true"
+  [style]="{ width: '500px' }"
+  [draggable]="false"
+  (onHide)="this.onDisplayModal()"
+>
+  <form [formGroup]="formGroup">
+    <div class="field w-full mb-2 font-semibold" *ngFor="let input of inputs">
+      <label *ngIf="input.controlName != 'id'" [attr.for]="input.controlName">{{
+        input.label
+      }}</label>
+      <div [ngSwitch]="input.type">
+        <p-inputNumber
+          *ngSwitchCase="'number'"
+          mode="decimal"
+          [inputId]="input.controlName"
+          [formControlName]="input.controlName"
+          class="flex"
+          locale="en-US"
+          [min]="0.01"
+          [minFractionDigits]="2"
+          [maxFractionDigits]="2"
+        >
+        </p-inputNumber>
+        <input
+          *ngSwitchCase="'text'"
+          [type]="input.controlName == 'id' ? 'hidden' : 'text'"
+          [id]="input.controlName"
+          [formControlName]="input.controlName"
+          pInputText
+          class="w-full"
+          autocomplete="off"
+        />
+
+        <p-dropdown
+          *ngSwitchCase="'dropdown'"
+          [formControlName]="input.controlName"
+          [options]="input.options!"
+          optionLabel="value"
+          placeholder="Selecciona uno"
+          optionValue="key"
+        ></p-dropdown>
+      </div>
+    </div>
+  </form>
+  <div class="flex justify-content-end mt-3">
+    <button
+      pButton
+      type="button"
+      icon="pi pi-check"
+      (click)="aceptar()"
+      label="Aceptar"
+      class="p-button-raised p-button-text"
+      [disabled]="validateForm()"
+    ></button>
+  </div>
+</p-dialog>

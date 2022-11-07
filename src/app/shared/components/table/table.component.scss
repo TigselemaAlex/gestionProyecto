@@ -1,0 +1,39 @@
+:host ::ng-deep .p-button-rounded,
+.p-button {
+  margin-right: 1rem;
+  width: 2rem;
+  height: 2rem;
+
+  .pi {
+    font-size: 0.8rem;
+  }
+}
+
+:host ::ng-deep .p-button.p-button-icon-only.p-button-rounded {
+  width: 2rem;
+  height: 2rem;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-tbody > tr > td {
+  padding: 0.6rem 0.6rem;
+}
+
+:host ::ng-deep .p-toolbar {
+  padding: 1rem !important;
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  margin-bottom: 0.5rem !important;
+  .p-toolbar-group-left {
+    i {
+      font-size: 1.2rem;
+      margin-left: 0.7rem;
+    }
+    span {
+      font-weight: 500;
+      font-size: 1.2rem;
+    }
+  }
+  .p-button {
+    padding: 0.5rem 1rem !important;
+  }
+}

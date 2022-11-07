@@ -1,1 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --color-100: #093038;
+  --color-80: #0f454d;
+  --color-60: #15696d;
+  --color-40: #209593;
+  --color-20: #2bc9c7;
+  --negro: #000;
+  --blanco: #fffffe;
+}
+
+html {
+  font-family: "Roboto" !important;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #0cebeb;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #29ffc6, #20e3b2, #0cebeb);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #29ffc6, #20e3b2, #0cebeb);
+}

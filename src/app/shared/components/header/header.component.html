@@ -1,0 +1,18 @@
+<p-toolbar>
+  <div class="p-toolbar-group-left">
+    <h1 class="m-0 text-center animate-charcter">HOTEL CLOUD</h1>
+  </div>
+
+  <div class="p-toolbar-group-right">
+    <p-splitButton
+      label="Usuario"
+      styleClass="button-user p-button-secondary"
+      [model]="this.items"
+    >
+      <ng-template pTemplate="content">
+        <i class="pi pi-user" style="font-size: 1rem"></i>
+        <span class="ml-2 flex align-items-center font-bold">Usuario</span>
+      </ng-template>
+    </p-splitButton>
+  </div>
+</p-toolbar>

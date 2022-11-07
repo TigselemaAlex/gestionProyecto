@@ -1,0 +1,20 @@
+:host ::ng-deep .p-toolbar {
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  margin-bottom: 0.8rem;
+  height: 70px;
+  margin-top: 0.5rem;
+  flex-wrap: nowrap;
+
+  i {
+    font-size: 40px;
+    margin-left: 30px;
+    color: var(--color-40);
+  }
+
+  span {
+    color: var(--color-40);
+    font-weight: 500;
+    font-size: 1.9rem;
+  }
+}
