@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { FormModel } from 'src/app/model/form.model';
 import { Habitacion } from 'src/app/model/habitacion.model';
@@ -23,7 +23,8 @@ export class MainPageComponent implements OnInit, OnDestroy {
   constructor(
     private habitacionService: HabitacionService,
     private formServices: FormService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService
   ) {}
   ngOnDestroy(): void {
     this.formServices.toggleForm(false);
@@ -37,6 +38,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
 
     this.formSubscription = this.formServices.data$.subscribe((data) => {
       if (data?.delete) {
+        this.onDeleteHabitacion(data.id);
       } else if (data?.id) {
         this.onEditarHabitacion(data.id);
       } else if (data?.save) {
@@ -50,6 +52,25 @@ export class MainPageComponent implements OnInit, OnDestroy {
 
     this.formServices.showForm$.subscribe((toggle) => {
       this.displayModal = toggle;
+    });
+  }
+  onDeleteHabitacion(id: any) {
+    this.confirmationService.confirm({
+      message: '¿Seguro que desea eliminar la HABITACION?',
+      header: 'Confirmación',
+      icon: 'pi pi-exclamation-triangle',
+      acceptLabel: 'Si',
+      rejectLabel: 'No',
+      acceptButtonStyleClass: 'p-button-raised p-button-text',
+      rejectButtonStyleClass: 'p-button-raised p-button-danger p-button-text',
+      accept: () => {
+        this.habitacionService.deleteHabitacion(id).subscribe({
+          next: (response) => {
+            this.showMessage('info', 'Confirmado', 'Habtiación eliminada');
+            this.getHabitaciones();
+          },
+        });
+      },
     });
   }
 
@@ -81,7 +102,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
         label: 'Estado',
         controlName: 'estado',
         type: 'dropdown',
-        require: false,
+        require: true,
         value: '',
         options: [
           { key: 'ocupado', value: 'OCUPADO' },
@@ -120,11 +141,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
             (key) => {
               if (input.controlName == key) {
                 if (input.options) {
-                  let option = {
-                    key: (habitacion[key] as string).toLowerCase(),
-                    value: (habitacion[key] as string).toUpperCase(),
-                  };
-                  input.value = option;
+                  input.value = (habitacion[key] as string).toLowerCase();
                 } else {
                   input.value = habitacion[key];
                 }
@@ -165,6 +182,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
       life: 1500,
     });
   }
+
   private transformarEstado(habitacion: Habitacion): Habitacion {
     if (habitacion.estado == 'ocupado') {
       habitacion.estado = false;

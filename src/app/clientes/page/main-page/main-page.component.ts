@@ -142,6 +142,10 @@ export class MainPageComponent implements OnInit, OnDestroy {
       message: '¿Seguro que desea eliminar al CLIENTE?',
       header: 'Confirmación',
       icon: 'pi pi-exclamation-triangle',
+      acceptLabel: 'Si',
+      rejectLabel: 'No',
+      acceptButtonStyleClass: 'p-button-raised p-button-text',
+      rejectButtonStyleClass: 'p-button-raised p-button-danger p-button-text',
       accept: () => {
         this.clienteService.eliminarCliente(id).subscribe({
           next: (response) => {

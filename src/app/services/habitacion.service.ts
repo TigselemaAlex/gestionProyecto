@@ -49,4 +49,8 @@ export class HabitacionService {
   editHabitacion(id: number, habitacion: Habitacion): Observable<Habitacion> {
     return this.http.put<Habitacion>(`${this.ENDPOINT}/${id}`, habitacion);
   }
+
+  deleteHabitacion(id: number): Observable<Habitacion> {
+    return this.http.delete<Habitacion>(`${this.ENDPOINT}/${id}`);
+  }
 }
