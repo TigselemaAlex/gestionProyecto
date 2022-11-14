@@ -1,0 +1,15 @@
+<app-title></app-title>
+<app-container>
+  <app-table [cols]="cols" [data]="reserva"></app-table>
+</app-container>
+<app-form
+  [inputs]="inputs"
+  [header]="headerForm"
+  *ngIf="displayModal"
+></app-form>
+<p-toast position="bottom-right"></p-toast>
+<p-confirmDialog
+  [style]="{ width: '50vw' }"
+  [baseZIndex]="10000"
+  [closable]="false"
+></p-confirmDialog>

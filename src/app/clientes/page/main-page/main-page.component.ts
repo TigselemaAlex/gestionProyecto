@@ -5,6 +5,7 @@ import { FormModel } from 'src/app/model/form.model';
 import { ClienteService } from 'src/app/services/cliente.service';
 import { FormService } from 'src/app/services/form.service';
 import { Subscription } from 'rxjs';
+import { TableMetaData } from 'src/app/model/table-meta-data.model';
 
 @Component({
   selector: 'app-main-page',
@@ -12,12 +13,12 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./main-page.component.scss'],
 })
 export class MainPageComponent implements OnInit, OnDestroy {
-  public cols: string[] = [
-    'cedula',
-    'nombre',
-    'apellido',
-    'telefono',
-    'acciones',
+  public cols: TableMetaData[] = [
+    { header: 'Cédula', field: 'cedula' },
+    { header: 'Nombre', field: 'nombre' },
+    { header: 'Apellido', field: 'apellido' },
+    { header: 'Teléfono', field: 'telefono' },
+    { header: 'Acciones', field: 'acciones' },
   ];
 
   public clientes: Cliente[] = [];
@@ -111,7 +112,6 @@ export class MainPageComponent implements OnInit, OnDestroy {
   }
 
   onEditarCliente(cedula: any): void {
-    console.log(cedula);
     let cliente: Cliente;
     this.clienteService.getClienteById(cedula).subscribe({
       next: (response) => {

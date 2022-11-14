@@ -17,6 +17,7 @@ export class FormComponent implements OnInit {
   public formGroup!: FormGroup;
 
   constructor(private formService: FormService) {}
+
   ngOnInit(): void {
     this.createForm();
     this.formService.showForm$.subscribe((toggle) => {
@@ -47,7 +48,6 @@ export class FormComponent implements OnInit {
     this.formService.toggleForm(false);
   }
   aceptar() {
-    console.log(this.formGroup.getRawValue());
     this.formService.sendData({
       save: true,
       data: this.formGroup.getRawValue(),

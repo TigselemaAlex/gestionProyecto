@@ -13,6 +13,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DropdownModule } from 'primeng/dropdown';
+import { CalendarModule } from 'primeng/calendar';
 
 @NgModule({
   imports: [
@@ -30,6 +31,7 @@ import { DropdownModule } from 'primeng/dropdown';
     ToastModule,
     ConfirmDialogModule,
     DropdownModule,
+    CalendarModule,
   ],
   exports: [
     CardModule,
@@ -46,6 +48,7 @@ import { DropdownModule } from 'primeng/dropdown';
     ToastModule,
     ConfirmDialogModule,
     DropdownModule,
+    CalendarModule,
   ],
 })
 export class PrimeNgModule {}

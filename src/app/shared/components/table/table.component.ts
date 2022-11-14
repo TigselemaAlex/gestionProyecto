@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { TableMetaData } from 'src/app/model/table-meta-data.model';
 import { FormService } from 'src/app/services/form.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { FormService } from 'src/app/services/form.service';
 })
 export class TableComponent implements OnInit {
   @Input() public data: any[] = [];
-  @Input() public cols: string[] = [];
+  @Input() public cols: TableMetaData[] = [];
 
   constructor(private formService: FormService) {}
 
@@ -28,5 +29,8 @@ export class TableComponent implements OnInit {
 
   isText(value: any): boolean {
     return typeof value === 'string';
+  }
+  isDate(date: any): boolean {
+    return date instanceof Date;
   }
 }

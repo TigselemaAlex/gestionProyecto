@@ -1,5 +1,5 @@
 export class Habitacion {
-  id?: number;
+  id: number;
   numero: number;
   estado: boolean | any;
   tipo: string | any;
@@ -9,7 +9,7 @@ export class Habitacion {
     estado: boolean | string,
     tipo: string,
     precio: number,
-    id?: number
+    id: number
   ) {
     this.numero = numero;
     this.estado = estado;

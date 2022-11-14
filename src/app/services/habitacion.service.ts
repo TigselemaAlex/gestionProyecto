@@ -15,13 +15,12 @@ export class HabitacionService {
     return this.http.get(this.ENDPOINT).pipe(
       map((response) => {
         let habitaciones = response as Habitacion[];
-        habitaciones.map((h) => {
+        habitaciones.forEach((h) => {
           if (h.estado == true) {
             h.estado = 'disponible';
           } else {
             h.estado = 'ocupado';
           }
-          return h;
         });
         return habitaciones;
       })

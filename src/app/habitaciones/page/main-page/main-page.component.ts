@@ -3,6 +3,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { FormModel } from 'src/app/model/form.model';
 import { Habitacion } from 'src/app/model/habitacion.model';
+import { TableMetaData } from 'src/app/model/table-meta-data.model';
 import { FormService } from 'src/app/services/form.service';
 import { HabitacionService } from 'src/app/services/habitacion.service';
 
@@ -12,7 +13,13 @@ import { HabitacionService } from 'src/app/services/habitacion.service';
   styleUrls: ['./main-page.component.scss'],
 })
 export class MainPageComponent implements OnInit, OnDestroy {
-  public cols: string[] = ['numero', 'estado', 'tipo', 'precio', 'acciones'];
+  public cols: TableMetaData[] = [
+    { field: 'numero', header: 'Número' },
+    { field: 'estado', header: 'Estado' },
+    { field: 'tipo', header: 'Tipo' },
+    { field: 'precio', header: 'Precio' },
+    { field: 'acciones', header: 'acciones' },
+  ];
   public habitaciones: Habitacion[] = [];
   public inputs: FormModel[] = [];
   public headerForm: string = 'Nueva Habitación';
@@ -44,6 +51,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
       } else if (data?.save) {
         let habitacion: Habitacion = data.data;
         habitacion = this.transformarEstado(habitacion);
+
         this.onSaveHabitacion(habitacion);
       } else {
         this.createInputs();

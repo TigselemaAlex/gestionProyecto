@@ -25,20 +25,20 @@
   <ng-template pTemplate="header" let-columns>
     <tr>
       <th *ngFor="let col of columns" class="justify-content-center">
-        {{ col | uppercase }}
+        {{ col.header | uppercase }}
       </th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-rowData let-columns="columns">
     <tr>
       <td *ngFor="let col of columns" class="justify-content-center">
-        <div *ngIf="col != 'acciones'; else bt">
-          <span *ngIf="isText(rowData[col]); else other">
-            {{ rowData[col] | uppercase }}
+        <div *ngIf="col.field != 'acciones'; else bt">
+          <span *ngIf="isText(rowData[col.field]); else other">
+            {{ rowData[col.field] | uppercase }}
           </span>
           <ng-template #other>
             <span>
-              {{ rowData[col] }}
+              {{ rowData[col.field] }}
             </span>
           </ng-template>
         </div>
