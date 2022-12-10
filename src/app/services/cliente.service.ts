@@ -8,7 +8,7 @@ import { Cliente } from '../model/cliente.model';
   providedIn: 'root',
 })
 export class ClienteService {
-  private ENDPOINT: string = `${environment.apiURL}/clientes`;
+  private ENDPOINT: string = `${environment.apiURL}/protected/clientes`;
 
   constructor(private http: HttpClient) {}
 

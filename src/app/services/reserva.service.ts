@@ -29,7 +29,6 @@ export class ReservaService {
             r.fechaentrada,
             'dd-MM-yyyy'
           ) as string;
-
           r.fechasalida = datePipe.transform(
             r.fechasalida,
             'dd-MM-yyyy'
